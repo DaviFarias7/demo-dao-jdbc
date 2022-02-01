@@ -53,3 +53,53 @@ Checklist:
 - Usar o script SQL para criar a base de dados "coursejdbc"
 - Fazer um pequeno programa para recuperar os departamentos
 - Na classe DB, criar métodos auxiliares estáticos para fechar ResultSet e Statement
+
+# Demo: inserir dados
+Código fonte: https://github.com/acenelio/jdbc3
+API:
+
+- PreparedStatement
+- executeUpdate
+- Statement.RETURN_GENERATED_KEYS
+- getGeneratedKeys
+
+Checklist:
+
+- Inserção simples com preparedStatement
+- Inserção com recuperação de Id
+
+# Demo: atualizar dados
+Código fonte: https://github.com/acenelio/jdbc4
+
+# Demo: deletar dados
+Código fonte: https://github.com/acenelio/jdbc5
+
+Checklist:
+
+- Criar DbIntegrityException
+- Tratar a exceção de integridade referencial
+
+# Demo: transações
+Referências: https://www.ibm.com/support/knowledgecenter/en/SSGMCP_5.4.0/product-overview/acid.html
+Código fonte: https://github.com/acenelio/jdbc6
+
+API:
+
+- setAutoCommit(false)
+- commit()
+- rollback()
+
+# Padrão de projeto DAO (Data Access Object) 
+Referências:
+https://www.devmedia.com.br/dao-pattern-persistencia-de-dados-utilizando-o-padrao-dao/30999
+https://www.oracle.com/technetwork/java/dataaccessobject-138824.html
+
+Ideia geral do padrão DAO:
+
+- Para cada entidade, haverá um objeto responsável por fazer acesso a dados relacionado a esta 
+entidade. Por exemplo:
+   - Cliente: ClienteDao
+   - Produto: ProdutoDao
+   - Pedido: PedidoDao
+- Cada DAO será definido por uma interface.
+- A injeção de dependência pode ser feita por meio do padrão de projeto Factory
