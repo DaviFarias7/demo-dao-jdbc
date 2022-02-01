@@ -103,3 +103,90 @@ entidade. Por exemplo:
    - Pedido: PedidoDao
 - Cada DAO será definido por uma interface.
 - A injeção de dependência pode ser feita por meio do padrão de projeto Factory
+
+![image](https://user-images.githubusercontent.com/86566715/151978613-305dfb8e-8753-4cf3-b097-bd9daf0d1c90.png)
+
+# Department entity class
+Entity class checklist:  Attributes
+- Constructors
+- Getters/Setters
+- hashCode and equals
+- toString
+- implements Serializable
+# Seller entity class
+
+# DepartmentDao and SellerDao interfaces
+
+# SellerDaoJDBC and DaoFactory
+
+# findById implementation
+SQL Query:
+
+SELECT seller.*,department.Name as DepName
+FROM seller INNER JOIN department 
+ON seller.DepartmentId = department.Id 
+WHERE seller.Id = ?
+
+Reusing instantiation
+
+private Seller instantiateSeller(ResultSet rs, Department dep) throws SQLException {
+Seller obj = new Seller();
+obj.setId(rs.getInt("Id"));
+obj.setName(rs.getString("Name"));
+obj.setEmail(rs.getString("Email"));
+obj.setBaseSalary(rs.getDouble("BaseSalary"));
+obj.setBirthDate(rs.getDate("BirthDate"));
+obj.setDepartment(dep);
+return obj; }
+private Department instantiateDepartment(ResultSet rs) throws SQLException {
+Department dep = new Department();
+dep.setId(rs.getInt("DepartmentId"));
+dep.setName(rs.getString("DepName"));
+return dep; }
+
+# findByDepartment implementation
+SQL Query:
+
+SELECT seller.*,department.Name as DepName 
+FROM seller INNER JOIN department 
+ON seller.DepartmentId = department.Id
+WHERE DepartmentId = ?
+ORDER BY Name
+INCORRECT
+CORRECT
+
+# findAll implementation
+SQL Query:
+
+SELECT seller.*,department.Name as DepName 
+FROM seller INNER JOIN department 
+ON seller.DepartmentId = department.Id
+ORDER BY Name
+
+# insert implementation
+SQL Query:
+INSERT INTO seller
+(Name, Email, BirthDate, BaseSalary, DepartmentId) 
+VALUES 
+(?, ?, ?, ?, ?)
+
+# update implementation
+SQL Query:
+UPDATE seller 
+SET Name = ?, Email = ?, BirthDate = ?, BaseSalary = ?, DepartmentId = ? 
+WHERE Id = ?
+
+# delete implementation
+SQL Query:
+DELETE FROM seller 
+WHERE Id = ?
+
+# DepartmentDao implementation and test
+
+Checklist:
+
+- DepartmentDaoJDBC
+- DaoFactory
+- Program2
+
+http://github.com/acenelio/demo-dao-jdbc
