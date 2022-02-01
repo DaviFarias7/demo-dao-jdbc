@@ -113,6 +113,9 @@ Entity class checklist:  Attributes
 - hashCode and equals
 - toString
 - implements Serializable
+
+![image](https://user-images.githubusercontent.com/86566715/151979927-f07dd322-faa5-4cfd-a123-e1e3c81827c6.png)
+
 # Seller entity class
 
 # DepartmentDao and SellerDao interfaces
