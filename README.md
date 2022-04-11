@@ -14,10 +14,6 @@ o https://docs.oracle.com/javase/8/docs/api/java/sql/package-summary.html
  - Pacotes: java.sql e javax.sql (API suplementar para servidores)
 ![jdbc](https://user-images.githubusercontent.com/86566715/151632639-f53e7787-e0ec-4296-a058-74407672efbb.PNG)
 
-# Instalação das ferramentas:
- - Instalar o MySQL Server e o MySQL Workbench
-Preparação do primeiro projeto no Eclipse
-Código fonte: https://github.com/acenelio/jdbc1
 Checklist:
  o Usando o MySQL Workbench, crie uma base de dados chamada "coursejdbc"
  o Baixar o MySQL Java Connector
@@ -28,16 +24,10 @@ Checklist:
  o Criar um novo Java Project
  - Acrescentar a User Library MySQLConnector ao projeto
  o Na pasta raiz do projeto, criar um arquivo "db.properties" contendo os dados de conexão:
- - user=developer
- - password=1234567
- - dburl=jdbc:mysql://localhost:3306/coursejdbc
- - useSSL=false
 o No pacote "db", criar uma exceção personalizada DbException
 o No pacote "db", criar uma classe DB com métodos estáticos auxiliares
 - Obter e fechar uma conexão com o banco
 # Demo: recuperar dados
-Script SQL: material de apoio ou https://github.com/acenelio/demo-dao-jdbc/blob/master/database.sql
-Código fonte: https://github.com/acenelio/jdbc2
 
 API:
 
@@ -55,9 +45,7 @@ Checklist:
 - Na classe DB, criar métodos auxiliares estáticos para fechar ResultSet e Statement
 
 # Demo: inserir dados
-Código fonte: https://github.com/acenelio/jdbc3
 API:
-
 - PreparedStatement
 - executeUpdate
 - Statement.RETURN_GENERATED_KEYS
@@ -69,10 +57,8 @@ Checklist:
 - Inserção com recuperação de Id
 
 # Demo: atualizar dados
-Código fonte: https://github.com/acenelio/jdbc4
 
 # Demo: deletar dados
-Código fonte: https://github.com/acenelio/jdbc5
 
 Checklist:
 
@@ -81,7 +67,6 @@ Checklist:
 
 # Demo: transações
 Referências: https://www.ibm.com/support/knowledgecenter/en/SSGMCP_5.4.0/product-overview/acid.html
-Código fonte: https://github.com/acenelio/jdbc6
 
 API:
 
@@ -123,15 +108,16 @@ Entity class checklist:  Attributes
 # SellerDaoJDBC and DaoFactory
 
 # findById implementation
+``
 SQL Query:
 
 SELECT seller.*,department.Name as DepName
 FROM seller INNER JOIN department 
 ON seller.DepartmentId = department.Id 
 WHERE seller.Id = ?
-
-Reusing instantiation
-
+``
+# Reusing instantiation
+``
 private Seller instantiateSeller(ResultSet rs, Department dep) throws SQLException {
 Seller obj = new Seller();
 obj.setId(rs.getInt("Id"));
@@ -146,10 +132,11 @@ Department dep = new Department();
 dep.setId(rs.getInt("DepartmentId"));
 dep.setName(rs.getString("DepName"));
 return dep; }
-
+``
 # findByDepartment implementation
-SQL Query:
 ```
+SQL Query:
+
 SELECT seller.*,department.Name as DepName 
 FROM seller INNER JOIN department 
 ON seller.DepartmentId = department.Id
@@ -157,33 +144,37 @@ WHERE DepartmentId = ?
 ORDER BY Name
 INCORRECT
 CORRECT
-
+```
 # findAll implementation
+``
 SQL Query:
 
 SELECT seller.*,department.Name as DepName 
 FROM seller INNER JOIN department 
 ON seller.DepartmentId = department.Id
 ORDER BY Name
-
+``
 # insert implementation
+``
 SQL Query:
 INSERT INTO seller
 (Name, Email, BirthDate, BaseSalary, DepartmentId) 
 VALUES 
 (?, ?, ?, ?, ?)
-
+``
 # update implementation
+``
 SQL Query:
 UPDATE seller 
 SET Name = ?, Email = ?, BirthDate = ?, BaseSalary = ?, DepartmentId = ? 
 WHERE Id = ?
-
+``
 # delete implementation
+``
 SQL Query:
 DELETE FROM seller 
 WHERE Id = ?
-```
+``
 # DepartmentDao implementation and test
 
 Checklist:
