@@ -146,14 +146,16 @@ INCORRECT
 CORRECT
 ```
 # findAll implementation
-``
+
+```
 SQL Query:
 
 SELECT seller.*,department.Name as DepName 
 FROM seller INNER JOIN department 
 ON seller.DepartmentId = department.Id
 ORDER BY Name
-``
+```
+
 # insert implementation
 ``
 SQL Query:
