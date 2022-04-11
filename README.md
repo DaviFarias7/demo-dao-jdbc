@@ -108,14 +108,14 @@ Entity class checklist:  Attributes
 # SellerDaoJDBC and DaoFactory
 
 # findById implementation
-``
+```
 SQL Query:
 
 SELECT seller.*,department.Name as DepName
 FROM seller INNER JOIN department 
 ON seller.DepartmentId = department.Id 
 WHERE seller.Id = ?
-``
+```
 # Reusing instantiation
 ``
 private Seller instantiateSeller(ResultSet rs, Department dep) throws SQLException {
