@@ -149,7 +149,7 @@ return dep; }
 
 # findByDepartment implementation
 SQL Query:
-
+```
 SELECT seller.*,department.Name as DepName 
 FROM seller INNER JOIN department 
 ON seller.DepartmentId = department.Id
@@ -183,7 +183,7 @@ WHERE Id = ?
 SQL Query:
 DELETE FROM seller 
 WHERE Id = ?
-
+```
 # DepartmentDao implementation and test
 
 Checklist:
@@ -192,4 +192,3 @@ Checklist:
 - DaoFactory
 - Program2
 
-http://github.com/acenelio/demo-dao-jdbc
