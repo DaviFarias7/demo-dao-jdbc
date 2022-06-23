@@ -117,7 +117,7 @@ ON seller.DepartmentId = department.Id
 WHERE seller.Id = ?
 ```
 # Reusing instantiation
-``
+```
 private Seller instantiateSeller(ResultSet rs, Department dep) throws SQLException {
 Seller obj = new Seller();
 obj.setId(rs.getInt("Id"));
@@ -132,7 +132,7 @@ Department dep = new Department();
 dep.setId(rs.getInt("DepartmentId"));
 dep.setName(rs.getString("DepName"));
 return dep; }
-``
+```
 # findByDepartment implementation
 ```
 SQL Query:
